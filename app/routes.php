@@ -82,5 +82,5 @@ Route::get('/twitter/callback', function() {
 });
 
 Route::get('twitter/error', function(){
-    // Something went wrong, add your own error handling here
+     
 });

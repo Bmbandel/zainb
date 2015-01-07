@@ -11,8 +11,8 @@ return array(
 	'REQUEST_TOKEN_URL'   => 'oauth/request_token',
 	'USE_SSL'             => true,
 
-	'CONSUMER_KEY'        => '',
-	'CONSUMER_SECRET'     => '',
+	'CONSUMER_KEY'        => 'UA94dwGMzz03vVuGuQPrqg',
+	'CONSUMER_SECRET'     => '9ru2ob2jcLk9ibeIPYBSC5LgsWPihGvmrNVzt3RBk',
 	'ACCESS_TOKEN'        => '',
 	'ACCESS_TOKEN_SECRET' => '',
 );
