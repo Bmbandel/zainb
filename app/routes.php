@@ -27,7 +27,7 @@ Route::get('/twitter/login', function()
     // your SIGN IN WITH TWITTER  button should point to this route
     $sign_in_twitter = TRUE;
     $force_login = FALSE;
-    $callback_url = 'http://' . $_SERVER['HTTP_HOST'] . 'public/twitter/callback';
+    $callback_url = 'http://' . $_SERVER['HTTP_HOST'] . '/public/twitter/callback';
     // Make sure we make this request w/o tokens, overwrite the default values in case of login.
     Twitter::set_new_config(array('token' => '', 'secret' => ''));
     $token = Twitter::getRequestToken($callback_url);
