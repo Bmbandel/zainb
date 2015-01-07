@@ -74,6 +74,7 @@ Route::get('/twitter/callback', function() {
 
             // This is also the moment to log in your users if you're using Laravel's Auth class
             // Auth::login($user) should do the trick.
+            var_dump($credentials);exit;
 
             return Redirect::to('/')->with('flash_notice', "Congrats! You've successfully signed in!");
         }
