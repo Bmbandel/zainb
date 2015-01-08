@@ -23,6 +23,12 @@
 
 <!--===================JQUERY ENDS=======================-->
 
+<script src="{{asset('assets/js/sweet-alert.min.js')}}"></script>
+
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/sweet-alert.css')}}">
+
+<script type="{{asset('assets/js/jquery.countdown.js')}}"></script>
+
 </head>
 <body>
 
@@ -66,63 +72,36 @@
   <div class="row PageHead">
     <div class="col-md-12">
       <h3>Click the yellow buttons to unfollow.</h3>
+
+       <span id="clock">
+
+       </span>
 	  <!-- Single button -->
 
     </div>
   </div>
-  <div class="row">
-	  
-    <div class="col-sm-6 features"> <img src="https://pbs.twimg.com/profile_images/1580308640/Nawneet_400x400.jpg" width="80px" alt="icon" class="img-responsive">
-      <h4>Person Name1
-	  <div class="btn-group"><button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Unfollow <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a href="#">Yes, unfollow!</a></li><li class="divider"></li><li><a href="#">Nevermind</a></li></ul></div>
-	  </h4>
-      <p>Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. </p><p><a href="" target="_blank">URL here</a></p>
+    
+    <div id="usercontainer">
+
+      {{  $i=0;  }}
+      @foreach($friends as $friend)
+
+      {{  $i=$i==2?0:$i+1;  }}
+
+      {{  $i!=0 or "<div class='row'>"  }}
+
+      <div class="btn-group"><button type="button" class="btn btn-warning dropdown-toggle unfollo" data-toggle="dropdown" aria-expanded="false">Unfollow <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a class="user" data-name="{{ $friend['screen_name'] }}" data-id="{{ $friend['id'] }}" href="#">Yes, unfollow!</a></li><li class="divider"></li><li><a href="#">Nevermind</a></li></ul></div>
+        </h4>
+        <p>{{$friend['description']}}</p><p><a href="{{$friend['url']}}" target="_blank">{{$friend['url']}}</a></p>
+      </div>
+
+      {{  $i!=0 or "</div>"  }}
+      @endforeach
+
     </div>
-	
-    <div class="col-sm-6 features"> <img src="https://pbs.twimg.com/profile_images/2374496291/y9a7z6e8xau88v4t6ovh_400x400.png" alt="icon" width="80px" class="img-responsive">
-      <h4>Person Name2
-	  <div class="btn-group"><button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Unfollow <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a href="#">Yes, unfollow!</a></li><li class="divider"></li><li><a href="#">Nevermind</a></li></ul></div>
-	  </h4>
-      <p>Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. </p><p><a href="" target="_blank">URL here</a></p>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-sm-6 features"> <img src="https://pbs.twimg.com/profile_images/378800000665706398/7c29cea2c338c6f5b45d7bcb0af0b79c_400x400.png" alt="icon" width="80px" class="img-responsive">
-      <h4>Person Name3
-	  <div class="btn-group"><button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Unfollow <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a href="#">Yes, unfollow!</a></li><li class="divider"></li><li><a href="#">Nevermind</a></li></ul></div>
-	  </h4>
-      <p>Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. </p><p><a href="" target="_blank">URL here</a></p>
-    </div>
-	
-    <div class="col-sm-6 features"> <img src="https://pbs.twimg.com/profile_images/378800000794766667/1dc17b197baf1857ede7e6e17ca1e268_400x400.jpeg" alt="icon" width="80px" class="img-responsive">
-      <h4>Person Name4
-	  <div class="btn-group"><button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Unfollow <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a href="#">Yes, unfollow!</a></li><li class="divider"></li><li><a href="#">Nevermind</a></li></ul></div>
-	  </h4>
-      <p>Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. </p><p><a href="" target="_blank">URL here</a></p>
-	  
-    </div>
-	
-  </div>
-  
-  <div class="row">
-    <div class="col-sm-6 features"> <img src="https://pbs.twimg.com/profile_images/1111488530/TDS_TwitterProfile_sq_400x400.jpg" alt="icon" class="img-responsive" width="80px">
-      <h4>Person Name5
-	  <div class="btn-group"><button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Unfollow <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a href="#">Yes, unfollow!</a></li><li class="divider"></li><li><a href="#">Nevermind</a></li></ul></div>
-	  </h4>
-      <p>Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. </p><p><a href="" target="_blank">URL here</a></p>
-	  
-    </div>
-	
-    <div class="col-sm-6 features"> <img src="https://pbs.twimg.com/profile_images/545756999992877056/3qHN8Zfg_400x400.jpeg" alt="icon" class="img-responsive" width="80px">
-      <h4>Person Name6
-	  <div class="btn-group"><button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Unfollow <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a href="#">Yes, unfollow!</a></li><li class="divider"></li><li><a href="#">Nevermind</a></li></ul></div>
-	  </h4>
-      <p>Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. Twitter bio goes here. </p><p><a href="" target="_blank">URL here</a></p>
-	  
-    </div>
-  </div>
-  
+    
+    <div id="loadMore" style="margin:0 auto;" class="btn btn-default">Load More</div>
+
 </div>
 <!--Container Closed--> 
 
@@ -186,5 +165,104 @@
 <!--==============BOOTSTRAP JS=================--> 
 
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+      var current_userid;
+
+      $('.user').on('click',function(e){
+
+        e.preventDefault();
+        current_userid=$(this).attr('data-id');
+        var name=$(this).attr('data-name');
+        swal({   
+          title: "Are you sure you want to unfollow "+name+"?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Yes, unfollow!",
+          closeOnConfirm: false },
+          function(){
+
+            $.ajax({
+              "url":"/do_unfollow",
+              "type":"get",
+              "data":{id:current_userid},
+              success:function(data){
+                  
+                  data=json.Parse(data,true);
+                  if(data['success']){
+                    swal( title: "Unfollowed Successfully!",text: "",timer: 1000,type:"success");
+                  }
+                  else if(!data['success'] && data['wait'].length<1){
+                    swal( title: "Oops...Something went wrong!",text: "",timer: 1000,type:"warning");
+                  }
+                  else if(!data['success'] && data['wait'].length>0){
+
+                    swal( title: "Unfollowed Successfully!",text: "",timer: 1000,type:"success");
+                    start_timer(data['wait']);
+                  }
+              }
+            });
+
+          });
+      });
+
+
+      function start_timer(time){
+
+        $("#timer").show();
+        $('.unfollo').prop('disabled',true);
+        $("#timer").countdown(time, function(event) {
+            
+            $(this).text(
+              event.strftime('%M mins')
+            );
+
+        }).on('finish.countdown', function(event) {
+   
+              $("#timer").hide();
+              $('.unfollo').prop('disabled',false);
+          });
+      }
+
+
+      $('#loadMore').on('click',function(){
+
+          $(this).prop('disabled',true);
+          $(this).html('loading....');
+          $.ajax({
+            "url":"/get_friends",
+            "type":"get",
+            success: function(data){
+                data=json.Parse(data,true);
+                var i=0,html="";
+                for(var friend in data){
+
+                  i=i==2?0:i+1;
+                  if(i!=0){html+="<div class='row'>";}
+
+                  html+='<div class="btn-group">
+                  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Unfollow <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a class="user" data-name="'+friend['screen_name'] +'" data-id="'+friend['id']+'" href="#">Yes, unfollow!</a></li><li class="divider"></li><li><a href="#">Nevermind</a></li></ul></div>
+                    </h4>
+                    <p>'+friend['description']+'</p><p><a href="'+friend['url']+'" target="_blank">'+friend['url']+'</a></p>
+                  </div>';
+
+                  if(i!=0){html+="</div>";}
+
+                }
+
+                $(this).prop('disabled',false);
+                $(this).html('Load More');
+                $('#usercontainer').append(html);
+            }
+          });
+
+      });
+
+  });
+
+</script>
 </body>
 </html>

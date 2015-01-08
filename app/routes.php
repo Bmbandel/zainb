@@ -13,14 +13,49 @@
 
 Route::get('/',function(){
 
+    if(Session::has('user')){ return Reidrect::to('/unfollow');}
 	return View::make('index');
 });
 
 Route::get('/unfollow',function(){
 
-	// if(Auth::check()){ return Reidrect::to('/');}
-	return View::make('unfollow');
+    if(!Session::has('user')){ return Reidrect::to('/');}
+    
+    Session::set('friends_count',0);
+    Session::set('cached_friend_ids',[]);
+    Session::set('cached_cursor','-1');
+
+    $filtered_friends=json_encode(get_filtered_users("-1"));
+	return View::make('unfollow')->with(['friends'=>$filtered_friends]);
+
 });
+
+
+Route::get('get_friends',function(){
+
+    echo json_encode(get_filtered_users($cursor));
+    exit;
+});
+
+Route::get('do_unfollow',function(){
+
+    $uid=Input::get('id');
+
+    $c=can_unfollow();
+    $result=['wait'=>''];
+
+    if(empty($c)){
+        $response=Twitter::postUnfollow(['user_id'=>$uid]);   
+        $result=$response['id_str']==$id?true:false; 
+    }   
+    else{
+        $result['wait']=$c;
+        $result['success']=false;
+    }
+    
+    return json_encode($result);
+});
+
 
 Route::get('/twitter/login', function()
 {
@@ -74,9 +109,18 @@ Route::get('/twitter/callback', function() {
 
             // This is also the moment to log in your users if you're using Laravel's Auth class
             // Auth::login($user) should do the trick.
-            var_dump($credentials);exit;
+            $user=[
+                    'token'=> $token,
+                    'user_screen_name'=>$credentials->screen_name,
+                    'user_id'=>$credentials->id,
+                    'user_profile_img'=>$credentials->profile_image_url,
+                    'user_friends_count'=>$credentials->friends_count,
+                    'user_description'=>$credentials->description,
+            ];
 
-            return Redirect::to('/')->with('flash_notice', "Congrats! You've successfully signed in!");
+            Session::put('user', $user);
+
+            return Redirect::to('/unfollow');
         }
         return Redirect::to('/')->with('flash_error', 'Crab! Something went wrong while signing you up!');
     }
